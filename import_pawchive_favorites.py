@@ -140,7 +140,7 @@ async def import_favorites(
             await asyncio.sleep(REQ_DELAY)
             continue
 
-        if resp.status_code == 200 or resp.status_code == 201:
+        if resp.status_code in (200, 201, 204):
             print(f"  [{i}/{total}] ✅ 成功 {log_name}")
             success_count += 1
         elif resp.status_code in (302, 401, 403):
