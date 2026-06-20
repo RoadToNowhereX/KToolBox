@@ -182,6 +182,25 @@ KTOOLBOX_API__CREATOR_POSTS_PATH=/{service}/user/{creator_id}
 KTOOLBOX_API__ENABLE_SUBDOMAIN_FALLBACK=false
 ```
 
+#### Migrate Favorites to pawchive.st
+
+If you need to migrate your favorites (posts and artists) from Kemono.cr to `pawchive.st`, you can use the bundled migration scripts:
+
+1. **Export from Kemono.cr**
+   Configure `KEMONO_COOKIE_HEADER` in your `.env` file (copy the full Cookie header from your browser's F12 network panel, which includes `__ddg*` and `session`).
+   Then run:
+   ```bash
+   python export_kemono_favorites.py
+   ```
+   This will generate `kemono_favorites_posts.json` and `kemono_favorites_artists.json`.
+
+2. **Import to Pawchive.st**
+   Configure `PAWCHIVE_COOKIE_HEADER` in your `.env` file.
+   Then run:
+   ```bash
+   python import_pawchive_favorites.py
+   ```
+
 Goto [Configuration-Guide](https://ktoolbox.readthedocs.io/latest/configuration/guide/) page for more details.
 
 ![KToolBox Configuration Editor](https://cdn.jsdelivr.net/gh/Ljzd-PRO/KToolBox@latest/static/preview-2.png)
