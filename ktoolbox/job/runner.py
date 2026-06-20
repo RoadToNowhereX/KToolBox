@@ -107,7 +107,12 @@ class JobRunner:
                 job = await self._job_queue.get()
 
                 # Create downloader
-                url_parts = [config.downloader.scheme, config.api.files_netloc, job.server_path, '', '', '']
+                url_parts = [
+                    config.downloader.scheme,
+                    config.api.files_netloc,
+                    config.api.files_path_prefix + job.server_path,
+                    '', '', ''
+                ]
                 url = str(urlunparse(url_parts))
                 downloader = Downloader(
                     url=url,

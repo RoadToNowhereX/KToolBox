@@ -30,6 +30,13 @@ class APIConfiguration(BaseModel):
     :ivar statics_netloc: URL netloc of Kemono server for static files (e.g. images)
     :ivar files_netloc: URL netloc of Kemono server for post files
     :ivar path: Kemono API URL root path
+    :ivar files_path_prefix: Path prefix prepended to file paths returned by API before constructing download URL. \
+    Empty string for kemono.cr (default). Set to '/data' for pawchive.st.
+    :ivar creator_posts_path: URL path template for fetching a creator's post list. \
+    kemono.cr uses '/{service}/user/{creator_id}/posts'. \
+    pawchive.st uses '/{service}/user/{creator_id}'.
+    :ivar enable_subdomain_fallback: Enable n1/n2/... subdomain fallback on 403. \
+    Set to False for sites like pawchive.st whose CDN does not use numeric subdomains.
     :ivar timeout: API request timeout
     :ivar retry_times: API request retry times (when request failed)
     :ivar retry_interval: Seconds of API request retry interval
@@ -40,6 +47,9 @@ class APIConfiguration(BaseModel):
     statics_netloc: str = "img.kemono.cr"
     files_netloc: str = "kemono.cr"
     path: str = "/api/v1"
+    files_path_prefix: str = ""
+    creator_posts_path: str = "/{service}/user/{creator_id}/posts"
+    enable_subdomain_fallback: bool = True
     timeout: float = 5.0
     retry_times: int = 3
     retry_interval: float = 2.0

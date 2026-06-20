@@ -5,6 +5,7 @@ from pydantic import RootModel
 
 from ktoolbox.api import BaseAPI, APIRet
 from ktoolbox.api.model import Post
+from ktoolbox.configuration import config
 
 __all__ = ["GetCreatorPost", "get_creator_post"]
 
@@ -29,7 +30,7 @@ class GetCreatorPost(BaseAPI):
         :param o: Result offset, stepping of 50 is enforced
         """
         return await cls.request(
-            path=cls.path.format(service=service, creator_id=creator_id),
+            path=config.api.creator_posts_path.format(service=service, creator_id=creator_id),
             params={
                 "q": q,
                 "o": o

@@ -214,6 +214,16 @@ class Downloader:
                 except ValueError:
                     subdomain_index = None
                 if res.status_code == 403:
+                    if not config.api.enable_subdomain_fallback:
+                        self._url = self._initial_url
+                        return DownloaderRet(
+                            code=RetCodeEnum.GeneralFailure,
+                            message=generate_msg(
+                                "Download failed (403), subdomain fallback disabled",
+                                status_code=res.status_code,
+                                filename=save_filepath
+                            )
+                        )
                     if subdomain_index is not None:
                         self.succeeded_servers.discard(subdomain_index)
                         self.failure_servers.add(subdomain_index)
