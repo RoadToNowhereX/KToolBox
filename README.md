@@ -170,6 +170,18 @@ ktoolbox sync-creator https://kemono.su/fanbox/user/9016 --keywords "表情,効�
 - Extract cloud drive links from posts and save them to a text file
 - ...
 
+#### pawchive.st support
+
+```
+# To enable support for pawchive.st, add parameters below in .env
+KTOOLBOX_API__NETLOC=pawchive.st
+KTOOLBOX_API__STATICS_NETLOC=pawchive.st
+KTOOLBOX_API__FILES_NETLOC=file.pawchive.st
+KTOOLBOX_API__FILES_PATH_PREFIX=/data
+KTOOLBOX_API__CREATOR_POSTS_PATH=/{service}/user/{creator_id}
+KTOOLBOX_API__ENABLE_SUBDOMAIN_FALLBACK=false
+```
+
 Goto [Configuration-Guide](https://ktoolbox.readthedocs.io/latest/configuration/guide/) page for more details.
 
 ![KToolBox Configuration Editor](https://cdn.jsdelivr.net/gh/Ljzd-PRO/KToolBox@latest/static/preview-2.png)
